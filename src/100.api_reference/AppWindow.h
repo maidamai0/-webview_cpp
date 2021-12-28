@@ -4,18 +4,21 @@
 
 #pragma once
 
-#include "stdafx.h"
+#include <dcomp.h>
+#include <ole2.h>
+#include <winnt.h>
+
+#include <functional>
+#include <memory>
+#include <string>
+#include <vector>
 
 #include "ComponentBase.h"
 #include "Toolbar.h"
+#include "WebView2.h"
 #include "resource.h"
-#include <dcomp.h>
-#include <functional>
-#include <memory>
-#include <ole2.h>
-#include <string>
-#include <vector>
-#include <winnt.h>
+#include "stdafx.h"
+
 #ifdef USE_WEBVIEW2_WIN10
 #include <winrt/Windows.UI.Composition.h>
 #include <winrt/Windows.UI.ViewManagement.h>

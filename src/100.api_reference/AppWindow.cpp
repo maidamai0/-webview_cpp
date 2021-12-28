@@ -1578,24 +1578,22 @@ std::wstring AppWindow::GetLocalPath(std::wstring relativePath, bool keep_exe_pa
 std::wstring AppWindow::GetLocalUri(
     std::wstring relativePath, bool useVirtualHostName /*= true*/)
 {
-    if (useVirtualHostName && m_webView3)
-    {
-        //! [LocalUrlUsage]
-        const std::wstring localFileRootUrl = L"https://appassets.example/";
-        return localFileRootUrl + regex_replace(relativePath, std::wregex(L"\\\\"), L"/");
-        //! [LocalUrlUsage]
-    }
-    else
-    {
-        std::wstring path = GetLocalPath(L"assets\\" + relativePath, false);
+  useVirtualHostName = false;
+  if (useVirtualHostName && m_webView3) {
+    //! [LocalUrlUsage]
+    const std::wstring localFileRootUrl = L"https://appassets.example/";
+    return localFileRootUrl + regex_replace(relativePath, std::wregex(L"\\\\"), L"/");
+    //! [LocalUrlUsage]
+  } else {
+    std::wstring path = GetLocalPath(L"assets\\" + relativePath, false);
 
-        wil::com_ptr<IUri> uri;
-        CHECK_FAILURE(CreateUri(path.c_str(), Uri_CREATE_ALLOW_IMPLICIT_FILE_SCHEME, 0, &uri));
+    wil::com_ptr<IUri> uri;
+    CHECK_FAILURE(CreateUri(path.c_str(), Uri_CREATE_ALLOW_IMPLICIT_FILE_SCHEME, 0, &uri));
 
-        wil::unique_bstr uriBstr;
-        CHECK_FAILURE(uri->GetAbsoluteUri(&uriBstr));
-        return std::wstring(uriBstr.get());
-    }
+    wil::unique_bstr uriBstr;
+    CHECK_FAILURE(uri->GetAbsoluteUri(&uriBstr));
+    return std::wstring(uriBstr.get());
+  }
 }
 
 void AppWindow::RunAsync(std::function<void()> callback)

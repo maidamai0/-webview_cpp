@@ -6,16 +6,16 @@
 
 #include "targetver.h"
 
-#define WIN32_LEAN_AND_MEAN // Exclude rarely-used stuff from Windows headers
 // Windows Header Files:
-#include <windows.h>
-
 #include <wil/com.h>
 #include <wil/resource.h>
 #include <wil/result.h>
-#include <winrt/base.h>
+#include <windows.h>
 #include <winrt/Windows.Foundation.h>
+#include <winrt/base.h>
 #include <wrl.h>
 
-#include "webview2experimental.h"
+#include "WebView2.h"
+#include "WebView2EnvironmentOptions.h"
+#include "WebView2Experimental.h"
 #include "WebView2ExperimentalEnvironmentOptions.h"
